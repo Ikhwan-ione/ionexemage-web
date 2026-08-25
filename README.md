@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 IONEXEMAGE — Official Landing Page
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-14+-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-Black?style=flat-square&logo=three.js&logoColor=white)
 
-First, run the development server:
+Ini adalah repositori resmi untuk *landing page* **IONEXEMAGE**, sebuah aplikasi *desktop image optimizer*. Halaman ini dirancang untuk memberikan pengalaman visual kelas atas dengan menggabungkan elemen 3D interaktif, animasi yang *smooth*, dan performa web yang sangat cepat.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Sorotan Fitur (UI/UX)
+* **3D Hero Section:** Menggunakan *React Three Fiber* untuk merender objek 3D yang bereaksi terhadap pergerakan kursor pengguna.
+* **Cyber-Neon Aesthetic:** Skema warna gelap (*deep abyss*) dengan aksen neon cyan (`#00EEFF`) dan electric blue (`#4B5CFF`) yang diekstrak langsung dari logo aplikasi.
+* **Bento Box Grid:** Tata letak fitur menggunakan gaya *asymmetrical grid* dengan efek *glassmorphism* (kaca tembus pandang).
+* **Scroll Animations:** Transisi halus menggunakan *Framer Motion* untuk memunculkan elemen saat pengguna melakukan *scroll*.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
+Proyek ini dibangun menggunakan teknologi web modern:
+* **Framework:** Next.js (App Router)
+* **Styling:** Tailwind CSS
+* **Animation:** Framer Motion
+* **3D Rendering:** React Three Fiber (R3F) & Drei
+* **Icons:** Lucide React
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔗 Tautan Penting:
 
-## Learn More
+📥 Unduh Aplikasi IONEXEMAGE: GitHub Releases
 
-To learn more about Next.js, take a look at the following resources:
+👨‍💻 Portofolio Developer: ionexe.my.id
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed & Developed by Ikhwan Ione.
