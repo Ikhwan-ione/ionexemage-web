@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const sora = Sora({
   variable: "--font-sora",
@@ -83,6 +84,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-body bg-abyss text-white overflow-x-hidden selection:bg-cyan/30 selection:text-white">
         {children}
         <Analytics />
+        <SpeedInsights/>
       </body>
     </html>
   );
