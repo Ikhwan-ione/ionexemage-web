@@ -69,6 +69,9 @@ export const metadata: Metadata = {
       "Optimasi puluhan foto ke WebP dalam hitungan detik. 100% offline, gratis, dan open-source.",
     images: ["/og-image.webp"],
   },
+  verification: {
+    google: "aqFhneVZtVQs8dk5pXfEQYMk88k2IMVJBzD83FYLclk", 
+  },
 };
 
 // FIX: Menggunakan Readonly dan React.ReactNode standar Next.js
