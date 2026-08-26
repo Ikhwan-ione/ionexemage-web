@@ -81,7 +81,7 @@ export default function FeatureGrid() {
             transition={{ delay: 0.05 }}
             className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight max-w-3xl mx-auto"
           >
-            Diciptakan untuk Anda yang menangani <span className="text-white/80">ribuan gambar</span> setiap hari.
+            Diciptakan untuk Anda yang menangani <span className="text-white/80">puluhan gambar</span> setiap hari.
           </motion.h2>
         </div>
 
