@@ -29,6 +29,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ionexemage.ionexe.my.id"),
   title: "IONEXEMAGE | Pangkas Ukuran Gambar, Bukan Kualitasnya.",
   description:
     "Kompresor gambar desktop tercepat dan zero-config untuk Windows. Drag, drop, dan optimasi puluhan foto ke WebP dalam hitungan detik. 100% berjalan lokal tanpa internet.",
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     title: "IONEXEMAGE | Pangkas Ukuran Gambar, Bukan Kualitasnya.",
     description:
       "Kompresor gambar desktop tercepat untuk Windows. Optimasi puluhan foto ke WebP secara instan dan 100% offline.",
-    url: "https://ionexemage.vercel.app", // Ganti dengan domain asli jika sudah di-deploy
+    url: "https://ionexemage.ionexe.my.id", // Ganti dengan domain asli jika sudah di-deploy
     siteName: "IONEXEMAGE",
     locale: "id_ID",
     type: "website",
