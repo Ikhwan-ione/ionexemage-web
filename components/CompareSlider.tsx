@@ -4,6 +4,12 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronsLeftRight } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const GatewayFlow = dynamic(() => import("./GatewayFlow"), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-abyss" />,
+});
 
 export default function CompareSlider() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -20,7 +26,11 @@ export default function CompareSlider() {
 
   return (
     <section id="compare" className="relative py-28 md:py-36 px-6 md:px-10">
-      <div className="max-w-5xl mx-auto text-center mb-16">
+      <div className="absolute inset-0 z-0 opacity-100">
+        <GatewayFlow density={0.5} />
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto text-center mb-16">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -37,8 +47,8 @@ export default function CompareSlider() {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6"
         >
-          Gambar yang sama. <br className="hidden md:block" />
-          <span className="text-white/80">Sebagian kecil dari ukurannya.</span>
+          Kualitas gambar sama. <br className="hidden md:block" />
+          <span className="text-white/80">Lebih kecil ukurannya.</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -47,7 +57,8 @@ export default function CompareSlider() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-4 text-muted max-w-xl mx-auto text-base md:text-lg"
         >
-          Geser garis pembatas di bawah untuk melihat bagaimana IONEXEMAGE mengompresi foto RAW JPG berat hanya dalam hitungan detik.
+          Geser garis pembatas di bawah untuk melihat bagaimana IONEXEMAGE
+          mengompresi foto RAW JPG berat hanya dalam hitungan detik.
         </motion.p>
       </div>
 
@@ -56,7 +67,7 @@ export default function CompareSlider() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-4xl mx-auto"
+        className="relative z-10 max-w-4xl mx-auto"
       >
         <div
           ref={wrapRef}
@@ -76,7 +87,6 @@ export default function CompareSlider() {
           {/* 1. BEFORE LAYER (Bawah / Kanan) */}
           {/* =============================== */}
           <div className="absolute inset-0">
-            {/* Gambar Asli (Diberi sedikit efek pucat agar perbedaannya terasa) */}
             <Image
               src="/city.webp"
               alt="Gambar sebelum dikompresi (JPG)"
@@ -85,8 +95,7 @@ export default function CompareSlider() {
               quality={100}
               priority
             />
-            
-            {/* Label Before */}
+
             <div className="absolute top-4 right-4 md:top-6 md:right-6 px-4 py-2 rounded-xl text-xs md:text-sm font-mono glass backdrop-blur-xl border border-white/10 shadow-lg z-10">
               <span className="text-muted">Sebelum · </span>
               <span className="text-white font-semibold">15.0 MB (JPG)</span>
@@ -99,10 +108,9 @@ export default function CompareSlider() {
           <div
             className="absolute inset-0 z-10 border-r border-cyan/50"
             style={{
-              clipPath: `inset(0 ${100 - pct}% 0 0)`, // Memotong gambar dari kanan ke kiri
+              clipPath: `inset(0 ${100 - pct}% 0 0)`,
             }}
           >
-            {/* Gambar Hasil Kompresi (Warna murni, kontras sempurna) */}
             <Image
               src="/city.webp"
               alt="Gambar setelah dikompresi (WebP)"
@@ -112,11 +120,11 @@ export default function CompareSlider() {
               priority
             />
 
-
-            {/* Label After */}
             <div className="absolute top-4 left-4 md:top-6 md:left-6 px-4 py-2 rounded-xl text-xs md:text-sm font-mono glass backdrop-blur-xl border border-cyan/30 shadow-[0_0_15px_rgba(0,238,255,0.2)] z-10">
               <span className="text-muted">Sesudah · </span>
-              <span className="text-cyan font-semibold drop-shadow-[0_0_5px_rgba(0,238,255,0.8)]">1.2 MB (WebP)</span>
+              <span className="text-cyan font-semibold drop-shadow-[0_0_5px_rgba(0,238,255,0.8)]">
+                1.2 MB (WebP)
+              </span>
             </div>
           </div>
 
@@ -125,7 +133,7 @@ export default function CompareSlider() {
           {/* =============================== */}
           <div
             className="absolute top-0 bottom-0 w-[2px] bg-cyan shadow-[0_0_15px_rgba(0,238,255,0.8)] z-20 transition-transform duration-75"
-            style={{ left: `${pct}%`, transform: 'translateX(-50%)' }}
+            style={{ left: `${pct}%`, transform: "translateX(-50%)" }}
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-abyss/80 backdrop-blur-md border-2 border-cyan shadow-[0_0_20px_rgba(0,238,255,0.6)]">
               <ChevronsLeftRight size={20} className="text-cyan" />

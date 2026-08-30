@@ -7,13 +7,23 @@ import { Zap, Maximize2, Layers, ShieldCheck } from "lucide-react";
 // ==========================================
 // OPTIMASI PERFORMA: Lazy Load Library 3D
 // ==========================================
-// Kita memuat SVG3D secara dinamis dan mematikan Server-Side Rendering (ssr: false)
-// Ini akan membuat skor Lighthouse Anda tetap hijau (95-100) karena file JS 3D
-// tidak akan memblokir proses rendering awal (First Contentful Paint).
 const SVG3D = dynamic(
   () => import("3dsvg").then((mod) => mod.SVG3D),
-  { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center text-cyan/50 text-xs animate-pulse font-mono">Memuat Modul 3D...</div> }
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex items-center justify-center text-cyan/50 text-xs animate-pulse font-mono">
+        Memuat Modul 3D...
+      </div>
+    ),
+  }
 );
+
+// Background constellation grid — canvas 2D, auto-pause di luar viewport
+const ConstellationGrid = dynamic(() => import("./ConstellationGrid"), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-abyss" />,
+});
 
 // ==========================================
 // RAW SVG STRING (Aman dari kegagalan load file)
@@ -42,9 +52,11 @@ const containerVariants: Variants = {
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30, scale: 0.95 },
-  show: { 
-    opacity: 1, y: 0, scale: 1, 
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -61,9 +73,25 @@ const barVariants: Variants = {
 // ==========================================
 export default function FeatureGrid() {
   return (
-    <section id="features" className="relative py-20 md:py-32 px-6 md:px-10 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        
+    <section
+      id="features"
+      className="relative py-20 md:py-32 px-6 md:px-10 overflow-hidden"
+    >
+      {/* Constellation Grid Background Layer */}
+      <div className="absolute inset-0 z-0 opacity-100">
+        <ConstellationGrid density={2.5} />
+      </div>
+
+      {/* Vignette blend supaya nyatu ke section sekitar & tidak mengganggu keterbacaan */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(7,10,26,0.4) 0%, rgba(7,10,26,0.92) 85%), linear-gradient(180deg, #070A1A 0%, rgba(7,10,26,0.2) 12%, rgba(7,10,26,0.2) 88%, #070A1A 100%)",
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* HEADER SECTION */}
         <div className="mb-16 text-center">
           <motion.p
@@ -81,7 +109,9 @@ export default function FeatureGrid() {
             transition={{ delay: 0.05 }}
             className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight max-w-3xl mx-auto"
           >
-            Diciptakan untuk Anda yang menangani <span className="text-white/80">puluhan gambar</span> setiap hari.
+            Diciptakan untuk kamu yang handle{" "}
+            <span className="text-white/80">puluhan gambar</span> setiap
+            hari.
           </motion.h2>
         </div>
 
@@ -99,19 +129,25 @@ export default function FeatureGrid() {
             className="glass rounded-3xl p-8 md:col-span-2 md:row-span-2 flex flex-col justify-between group hover:bg-surface/60 hover:border-cyan/30 transition-all duration-500 overflow-hidden relative"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-cyan/10 transition-colors duration-500" />
-            
+
             <div className="relative z-10">
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-cyan/10 border border-cyan/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-[0_0_15px_rgba(0,238,255,0.15)]">
-                <Zap size={24} className="text-cyan drop-shadow-[0_0_5px_rgba(0,238,255,0.8)]" />
+                <Zap
+                  size={24}
+                  className="text-cyan drop-shadow-[0_0_5px_rgba(0,238,255,0.8)]"
+                />
               </div>
               <h3 className="font-display font-semibold text-2xl mb-3 text-white">
                 Pemrosesan Massal Tanpa Batas
               </h3>
               <p className="text-muted text-sm md:text-base leading-relaxed font-light">
-                Kompres puluhan foto dalam satu klik tanpa limit. Tarik seluruh isi folder foto ke dalam folder foto_mentah dan biarkan mesin bekerja secara paralel di latar belakang tanpa memberatkan RAM Anda.
+                Kompres puluhan foto dalam satu klik tanpa limit. Tarik
+                seluruh isi folder foto ke dalam folder foto_mentah dan
+                biarkan mesin bekerja secara paralel di latar belakang tanpa
+                memberatkan RAM Anda.
               </p>
             </div>
-            
+
             <div className="relative z-10 mt-10 h-28 rounded-2xl border border-edge bg-abyss/40 flex items-end gap-1.5 md:gap-2 p-4">
               {[35, 55, 80, 45, 95, 60, 75].map((h, i) => (
                 <motion.div
@@ -120,7 +156,9 @@ export default function FeatureGrid() {
                   variants={barVariants}
                   className="w-full rounded-t-sm md:rounded-t-md relative group-hover:brightness-125 transition-all duration-300"
                   style={{
-                    background: `linear-gradient(180deg, ${h > 65 ? "#00EEFF" : "#4B5CFF"}, transparent)`,
+                    background: `linear-gradient(180deg, ${
+                      h > 65 ? "#00EEFF" : "#4B5CFF"
+                    }, transparent)`,
                   }}
                 >
                   <div className="absolute top-0 inset-x-0 h-[2px] bg-white/50 rounded-t-md" />
@@ -136,16 +174,21 @@ export default function FeatureGrid() {
           >
             <div className="flex-1 relative z-10">
               <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-5 bg-blue/10 border border-blue/20 group-hover:-translate-y-1 transition-transform duration-300 shadow-[0_0_15px_rgba(75,92,255,0.15)]">
-                <Maximize2 size={22} className="text-blue drop-shadow-[0_0_5px_rgba(75,92,255,0.8)]" />
+                <Maximize2
+                  size={22}
+                  className="text-blue drop-shadow-[0_0_5px_rgba(75,92,255,0.8)]"
+                />
               </div>
               <h3 className="font-display font-semibold text-xl mb-2 text-white">
                 Kecerdasan Auto-Resize
               </h3>
               <p className="text-muted text-sm leading-relaxed font-light">
-                Secara otomatis mendeteksi dan meratakan dimensi gambar mentok di lebar maksimal 1920px. Standar emas untuk optimasi web modern.
+                Secara otomatis mendeteksi dan meratakan dimensi gambar
+                mentok di lebar maksimal 1920px. Standar emas untuk optimasi
+                web modern.
               </p>
             </div>
-            
+
             {/* WADAH SVG 3D DARI LIBRARY */}
             <div className="w-full md:w-[160px] h-[150px] md:h-[180px] relative z-0 flex-shrink-0 flex items-center justify-center">
               <SVG3D
@@ -167,13 +210,17 @@ export default function FeatureGrid() {
             className="glass rounded-3xl p-7 group hover:bg-surface/60 hover:border-violet/30 transition-all duration-500"
           >
             <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-5 bg-violet/10 border border-violet/20 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(139,107,255,0.15)]">
-              <Layers size={22} className="text-violet drop-shadow-[0_0_5px_rgba(139,107,255,0.8)]" />
+              <Layers
+                size={22}
+                className="text-violet drop-shadow-[0_0_5px_rgba(139,107,255,0.8)]"
+              />
             </div>
             <h3 className="font-display font-semibold text-lg mb-2 text-white">
               Dukungan HEIC
             </h3>
             <p className="text-muted text-sm leading-relaxed font-light">
-              Sistem deteksi cerdas yang mampu membaca dan mengonversi format foto eksklusif dari perangkat iOS & Apple.
+              Sistem deteksi cerdas yang mampu membaca dan mengonversi format
+              foto eksklusif dari perangkat iOS &amp; Apple.
             </p>
           </motion.div>
 
@@ -183,16 +230,19 @@ export default function FeatureGrid() {
             className="glass rounded-3xl p-7 group hover:bg-surface/60 hover:border-cyan/30 transition-all duration-500"
           >
             <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-5 bg-cyan/10 border border-cyan/20 group-hover:-translate-y-1 transition-transform duration-300 shadow-[0_0_15px_rgba(0,238,255,0.15)]">
-              <ShieldCheck size={22} className="text-cyan drop-shadow-[0_0_5px_rgba(0,238,255,0.8)]" />
+              <ShieldCheck
+                size={22}
+                className="text-cyan drop-shadow-[0_0_5px_rgba(0,238,255,0.8)]"
+              />
             </div>
             <h3 className="font-display font-semibold text-lg mb-2 text-white">
-              100% Offline & Privat
+              100% Offline &amp; Privat
             </h3>
             <p className="text-muted text-sm leading-relaxed font-light">
-              Berjalan murni secara lokal di CPU komputermu. Tidak ada peladen awan, tidak ada data yang diunggah.
+              Berjalan murni secara lokal di CPU komputermu. Tidak ada
+              peladen awan, tidak ada data yang diunggah.
             </p>
           </motion.div>
-
         </motion.div>
       </div>
     </section>

@@ -130,7 +130,7 @@ export default function HowItWorks() {
             className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight"
           >
             Empat Langkah. <br className="md:hidden" />
-            <span className="text-white/80">Sepenuhnya Otomatis.</span>
+            <span className="text-white/80">Beres !</span>
           </motion.h2>
         </div>
 

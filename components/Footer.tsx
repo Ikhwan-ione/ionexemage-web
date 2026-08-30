@@ -42,6 +42,12 @@ const itemVariants: Variants = {
 };
 
 export default function Footer() {
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const user = "hello";
+    const domain = "ionexe.my.id";
+    window.location.href = `mailto:${user}@${domain}`;
+  };
   return (
     <motion.footer 
       initial="hidden"
@@ -96,10 +102,10 @@ export default function Footer() {
             <a href="https://github.com/Ikhwan-ione/ionexemage" target="_blank" rel="noreferrer" aria-label="GitHub Repository" className="hover:text-cyan hover:drop-shadow-[0_0_8px_rgba(0,238,255,0.6)] transition-all duration-300">
               <GithubIcon size={19} />
             </a>
-            <a href="#" aria-label="Developer Portfolio" className="hover:text-cyan hover:drop-shadow-[0_0_8px_rgba(0,238,255,0.6)] transition-all duration-300">
+            <a href="https://ionexe.my.id" aria-label="Developer Portfolio" className="hover:text-cyan hover:drop-shadow-[0_0_8px_rgba(0,238,255,0.6)] transition-all duration-300">
               <Briefcase size={19} />
             </a>
-            <a href="#" aria-label="Email Developer" className="hover:text-cyan hover:drop-shadow-[0_0_8px_rgba(0,238,255,0.6)] transition-all duration-300">
+            <a href="#" onClick={handleEmailClick} aria-label="Email Developer" className="hover:text-cyan hover:drop-shadow-[0_0_8px_rgba(0,238,255,0.6)] transition-all duration-300">
               <Mail size={19} />
             </a>
           </div>

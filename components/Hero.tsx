@@ -41,7 +41,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden selection:bg-cyan/30 selection:text-white">
       {/* 3D Background Layer */}
-      <div className="absolute inset-0 z-0 opacity-80 mix-blend-screen">
+      <div className="absolute inset-0 z-0 opacity-90 mix-blend-screen">
         <Hero3D />
       </div>
 
@@ -56,24 +56,7 @@ export default function Hero() {
       />
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 pt-32 pb-24 text-center">
-        
-        {/* Floating Badge */}
-        <motion.div
-          custom={0}
-          initial="hidden"
-          animate="show"
-          variants={fadeUp}
-          className="flex justify-center mb-8"
-        >
-          <div className="group relative inline-flex items-center gap-2 pill rounded-full px-5 py-2 text-xs md:text-sm text-white/90 cursor-default hover:border-cyan/50 transition-colors duration-300">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan"></span>
-            </span>
-            <span className="font-medium tracking-wide">v1.0 Telah Rilis | 100% Gratis & Open Source</span>
-          </div>
-        </motion.div>
+      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 pt-46 pb-24 text-center">
 
         {/* Headline */}
         <motion.h1
@@ -83,7 +66,7 @@ export default function Hero() {
           variants={fadeUp}
           className="font-display font-extrabold tracking-tight text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] leading-[1.1] mb-6"
         >
-          <span className="text-white drop-shadow-md">Pangkas Ukuran Gambar,</span>
+          <span className="text-white drop-shadow-md">Pangkas Ukurannya,</span>
           <br />
           <span className="grad-text filter drop-shadow-[0_0_20px_rgba(0,238,255,0.2)]">Bukan Kualitasnya.</span>
         </motion.h1>
@@ -96,7 +79,7 @@ export default function Hero() {
           variants={fadeUp}
           className="text-muted text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed font-light mb-10"
         >
-          Kompresor gambar desktop tercepat dan <span className="text-white/80 font-medium">zero-config</span> untuk Windows. Copy, Paste, dan optimasi puluhan foto ke WebP dalam hitungan detik.
+          Kompresor gambar desktop tercepat dan <span className="text-white/80 font-medium">zero-config</span> untuk Windows. Copy, paste, dan optimasi puluhan foto ke WebP dalam hitungan detik.
         </motion.p>
 
         {/* CTA Buttons */}

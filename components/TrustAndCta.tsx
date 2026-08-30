@@ -87,10 +87,10 @@ export default function TrustAndCta() {
           viewport={{ once: true, amount: 0.4 }}
         >
           <h2 className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
-            Tingkatkan <span className="grad-text filter drop-shadow-[0_0_15px_rgba(0,238,255,0.3)]">Performa Websitemu</span> Hari Ini.
+            Tingkatkan <span className="grad-text filter drop-shadow-[0_0_15px_rgba(0,238,255,0.3)]">Performa Websitemu</span> Hari Ini!
           </h2>
           <p className="text-muted text-base md:text-lg mb-10 max-w-xl mx-auto font-light">
-            Bergabunglah dengan alur kerja modern. Ringan, super cepat, dan sepenuhnya gratis.
+            Ayo join dengan alur kerja modern. Ringan, super cepat, dan sepenuhnya gratis.
           </p>
 
           <div className="flex flex-col items-center gap-4">
