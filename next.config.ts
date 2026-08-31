@@ -5,16 +5,12 @@ const nextConfig: NextConfig = {
 
   images: {
     // Memprioritaskan AVIF, fallback ke WebP jika browser pengunjung jadul
-    formats: ['image/avif', 'image/webp'],
-    
-    // Memperpanjang umur cache gambar menjadi 60 detik (defaultnya lebih singkat)
-    minimumCacheTTL: 60, 
-    
+    formats: ["image/avif", "image/webp"],
+    qualities: [75, 100],
   },
 
   experimental: {
-    // Memotong beban library berat agar ukuran file web jauh lebih ringan
-    optimizePackageImports: ['framer-motion', 'lucide-react', 'react-icons'],
+    optimizePackageImports: ["framer-motion", "lucide-react"],
   },
 
   // --- KEAMANAN ---
@@ -22,14 +18,23 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
-          { key: 'X-DNS-Prefetch-Control', value: 'on' },
-          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-          { key: 'X-XSS-Protection', value: '1; mode=block' },
-          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' }
+          { key: "X-DNS-Prefetch-Control", value: "on" },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
         ],
       },
     ];
